@@ -72,7 +72,7 @@ public class StartUI extends JFrame {
 		exit = new JButton("Exit");
 		buttonPanel = new JPanel();
 		desJPanel = new JPanel();
-		description = "This is Evil Witch Game Create by Athiwat and Wasupol Team";
+		description = "This is Evil Witch Game Created by Athiwat and Wasupol Team";
 		showDescription = new JLabel(description);
 		try {
 			image = ImageIO.read(new File(path));

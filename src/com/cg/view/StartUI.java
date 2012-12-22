@@ -1,13 +1,22 @@
 package com.cg.view;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import jogamp.opengl.glu.mipmap.ExtractUShort;
 
 public class StartUI extends JFrame{
 
@@ -16,10 +25,12 @@ public class StartUI extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton start;
-	private JButton Exit;
+	private JButton exit;
 	private JPanel banner;
-	private JLabel description;
-	
+	private JLabel showDescription;
+	private String description;
+	private ImageIcon imgicon;
+	private Image img;
 	public StartUI () {
 		this.setTitle("Evil Witch");
 		initComponents();
@@ -36,6 +47,10 @@ public class StartUI extends JFrame{
 		this.setVisible(true);
 	}
 	public void initComponents() {
-		
+		start = new JButton("Start");
+		exit = new JButton("Exit");
+		banner = new JPanel();
+		imgicon = new ImageIcon(img);
+		banner.setPreferredSize(new Dimension(imgicon.getIconWidth(), imgicon.getIconHeight()));
 	}
 }

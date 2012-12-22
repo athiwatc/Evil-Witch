@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.cg.model.ImagePanel;
+
 import jogamp.opengl.glu.mipmap.ExtractUShort;
 
 public class StartUI extends JFrame{
@@ -26,11 +28,9 @@ public class StartUI extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JButton start;
 	private JButton exit;
-	private JPanel banner;
 	private JLabel showDescription;
 	private String description;
-	private ImageIcon imgicon;
-	private Image img;
+	private ImagePanel	imgPanel;
 	public StartUI () {
 		this.setTitle("Evil Witch");
 		initComponents();
@@ -49,8 +49,6 @@ public class StartUI extends JFrame{
 	public void initComponents() {
 		start = new JButton("Start");
 		exit = new JButton("Exit");
-		banner = new JPanel();
-		imgicon = new ImageIcon(img);
-		banner.setPreferredSize(new Dimension(imgicon.getIconWidth(), imgicon.getIconHeight()));
+		imgPanel = new ImagePanel("");
 	}
 }

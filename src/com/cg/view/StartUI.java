@@ -27,7 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cg.model.DrawWorld;
+import com.cg.model.DrawMenu;
 import com.cg.model.ImagePanel;
 import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 

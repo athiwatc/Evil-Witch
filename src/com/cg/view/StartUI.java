@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -49,7 +50,7 @@ public class StartUI {
 	// private ButtonGroup btg;
 	private JPanel buttonPanel;
 	private BufferedImage image;
-	private String path = "pic/wicked-witch.jpg";
+	private String path = "/pic/wicked-witch.jpg";
 	private boolean started;
 	private JFrame frame;
 
@@ -80,7 +81,8 @@ public class StartUI {
 		description = "This is Evil Witch Game Created by Athiwat and Wasupol Team";
 		showDescription = new JLabel(description);
 		try {
-			image = ImageIO.read(new File(path));
+//			System.out.println();
+			image = ImageIO.read(this.getClass().getResource(path));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

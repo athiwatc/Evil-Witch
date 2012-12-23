@@ -1,11 +1,15 @@
 package com.cg.model;
 
+import javax.swing.JOptionPane;
+
+import com.cg.view.EarthLevel;
 import com.cg.view.GameMenu;
 import com.cg.view.StartUI;
 
 public class Main {
 	private static String TITLE = "Select Level"; // window's
-																	// title
+													// title
+	private static String EARTH_TITLE = "Save The Earth";
 	private static final int CANVAS_WIDTH = 800; // width of the drawable
 	private static final int CANVAS_HEIGHT = 600; // height of the drawable
 	private static final int FPS = 60; // animator's target frames per second
@@ -25,7 +29,7 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-		GameMenu wouldUi = new GameMenu(TITLE, CANVAS_WIDTH, CANVAS_HEIGHT,FPS);
-		wouldUi.run();
+		GameMenu worldUi = new GameMenu(TITLE, CANVAS_WIDTH, CANVAS_HEIGHT, FPS);
+		worldUi.run();
 	}
 }

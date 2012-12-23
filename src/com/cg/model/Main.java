@@ -1,6 +1,6 @@
 package com.cg.model;
 
-import com.cg.view.GameWorld;
+import com.cg.view.GameMenu;
 import com.cg.view.StartUI;
 
 public class Main {
@@ -25,7 +25,7 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-		GameWorld wouldUi = new GameWorld(TITLE, CANVAS_WIDTH, CANVAS_HEIGHT,FPS);
+		GameMenu wouldUi = new GameMenu(TITLE, CANVAS_WIDTH, CANVAS_HEIGHT,FPS);
 		wouldUi.run();
 	}
 }

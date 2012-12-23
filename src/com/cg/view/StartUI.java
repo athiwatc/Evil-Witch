@@ -3,6 +3,7 @@ package com.cg.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -26,12 +27,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.cg.model.DrawWorld;
 import com.cg.model.ImagePanel;
 import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 import jogamp.opengl.glu.mipmap.ExtractUShort;
 
-public class StartUI extends JFrame {
+public class StartUI {
 
 	/**
 	 * 
@@ -48,23 +50,26 @@ public class StartUI extends JFrame {
 	private JPanel buttonPanel;
 	private BufferedImage image;
 	private String path = "pic/wicked-witch.jpg";
+	private boolean started;
+	private JFrame frame;
 
 	public StartUI() {
-		this.setTitle("Evil Witch");
-		this.setLayout(new BorderLayout());
+		frame = new JFrame();
+		frame.setTitle("Evil Witch");
+		frame.setLayout(new BorderLayout());
 		initComponents();
-		this.setSize(800, 600);
-		this.addWindowListener(new WindowAdapter() {
+		frame.setSize(800, 600);
+		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
 				System.exit(0);
 			}
 		});
-		this.pack();
+		frame.pack();
 	}
 
 	public void run() {
 		// TODO Auto-generated method stub
-		this.setVisible(true);
+		frame.setVisible(true);
 	}
 
 	public void initComponents() {
@@ -85,12 +90,27 @@ public class StartUI extends JFrame {
 		desJPanel.add(showDescription);
 		// btg.add(start);
 		// btg.add(exit);
+		start.addActionListener( new StartListener());
 		exit.addActionListener(new ExitListener());
 		buttonPanel.add(start);
 		buttonPanel.add(exit);
-		this.add(label, BorderLayout.PAGE_START);
-		this.add(desJPanel, BorderLayout.CENTER);
-		this.add(buttonPanel, BorderLayout.PAGE_END);
+		frame.add(label, BorderLayout.PAGE_START);
+		frame.add(desJPanel, BorderLayout.CENTER);
+		frame.add(buttonPanel, BorderLayout.PAGE_END);
+	}
+
+	public boolean isStarted() {
+		return started;
+	}
+
+	class StartListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			started = true;
+			frame.dispose();
+		}
 	}
 
 	class ExitListener implements ActionListener {
@@ -98,6 +118,7 @@ public class StartUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			started = false;
 			System.exit(0);
 		}
 

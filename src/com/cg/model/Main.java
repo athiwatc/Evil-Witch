@@ -1,5 +1,6 @@
 package com.cg.model;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.cg.view.EarthLevel;
@@ -13,6 +14,7 @@ public class Main {
 	private static final int CANVAS_WIDTH = 800; // width of the drawable
 	private static final int CANVAS_HEIGHT = 600; // height of the drawable
 	private static final int FPS = 60; // animator's target frames per second
+	private static JFrame frame;
 
 	/**
 	 * @param args
@@ -31,5 +33,10 @@ public class Main {
 		}
 		GameMenu worldUi = new GameMenu(TITLE, CANVAS_WIDTH, CANVAS_HEIGHT, FPS);
 		worldUi.run();
+		if (worldUi.getLevel().equalsIgnoreCase("none")) {
+			// System.out.println(worldUi.getLevel());
+			frame = new JFrame();
+			JOptionPane.showMessageDialog(frame, "Please select level");
+		}
 	}
 }

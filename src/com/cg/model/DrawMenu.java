@@ -2,12 +2,14 @@ package com.cg.model;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.*;
+import javax.imageio.ImageIO;
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
@@ -39,12 +41,12 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 	// private float angleCube = 0; // rotational angle in degree for cube
 	private float rotateOb = 0.5f; // rotational speed for pyramid
 	// private float speedCube = -1.5f; // rotational speed for cube
-	private Texture earthTexture;
-	private InputStream stream;
-	private TextureData data;
+	private Texture[] textures = new Texture[2];
 
 	private float angleSphere;
-	
+	private String earthTextureFileName = "/pic/Color Map.jpg";
+	private String comingSoonTexture = "/pic/Clouds.png";
+
 	// private String textureFileName = "pic/Color Map.jpg";
 
 	/** Constructor to setup the GUI for this Component */
@@ -86,7 +88,14 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 
 		gl.glEnable(GL_LIGHTING);
 		gl.glEnable(GL_LIGHT0);
-
+		try {
+			textures[0] = TextureIO.newTexture(this.getClass().getResourceAsStream(earthTextureFileName), true, "jpg");
+			textures[1] = TextureIO.newTexture(this.getClass().getResourceAsStream(comingSoonTexture), true, "png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -143,12 +152,24 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 		gl.glPushMatrix();
 		gl.glTranslatef(-2.0f, 2.0f, 0.0f);
 		gl.glRotatef(angleSphere, 0.0f, 1.0f, 0.0f);
-		gl.glMaterialfv(GL.GL_FRONT, GL_AMBIENT, mat_ambient_color, 0);
+		textures[0].enable(gl);
+		textures[0].bind(gl);
+		GLUquadric earth = glu.gluNewQuadric();
+		glu.gluQuadricTexture(earth, true);
+	    glu.gluQuadricDrawStyle(earth, GLU.GLU_FILL);
+	    glu.gluQuadricNormals(earth, GLU.GLU_FLAT);
+	    glu.gluQuadricOrientation(earth, GLU.GLU_OUTSIDE);
+	    final float radius = 1.5f;
+	    final int slices = 16;
+	    final int stacks = 16;
+	    glu.gluSphere(earth, radius, slices, stacks);
+	    gl.glMaterialfv(GL.GL_FRONT, GL_AMBIENT, mat_ambient_color, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_DIFFUSE, mat_diffuse, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_SPECULAR, mat_specular, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_SHININESS, high_shininess, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_EMISSION, no_mat, 0);
-		glut.glutSolidSphere(1.0, 20, 20);
+	    //glut.glutSolidSphere(1.0, 20, 20);
+	    glu.gluDeleteQuadric(earth);
 		gl.glPopMatrix();
 		/*
 		 * draw sphere in third row, fourth column colored ambient and diffuse
@@ -157,12 +178,24 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 		gl.glPushMatrix();
 		gl.glTranslatef(2.0f, 0.0f, 1.0f);
 		gl.glRotatef(angleSphere, 0.0f, 1.0f, 0.0f);
-		gl.glMaterialfv(GL.GL_FRONT, GL_AMBIENT, mat_ambient_color, 0);
+		//		glut.glutSolidSphere(1.0, 20, 20);
+		textures[1].enable(gl);
+		textures[1].bind(gl);
+		GLUquadric mar = glu.gluNewQuadric();
+		glu.gluQuadricTexture(mar, true);
+	    glu.gluQuadricDrawStyle(mar, GLU.GLU_FILL);
+	    glu.gluQuadricNormals(mar, GLU.GLU_FLAT);
+	    glu.gluQuadricOrientation(mar, GLU.GLU_OUTSIDE);
+	    final float radiusm = 1.5f;
+	    final int slicesm = 16;
+	    final int stacksm = 16;
+	    glu.gluSphere(mar, radiusm, slicesm, stacksm);
+	    gl.glMaterialfv(GL.GL_FRONT, GL_AMBIENT, mat_ambient_color, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_DIFFUSE, mat_diffuse, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_SPECULAR, no_mat, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_SHININESS, no_shininess, 0);
 		gl.glMaterialfv(GL.GL_FRONT, GL_EMISSION, mat_emission, 0);
-		glut.glutSolidSphere(1.0, 20, 20);
+	    glu.gluDeleteQuadric(mar);
 		gl.glPopMatrix();
 		angleSphere += rotateOb;
 		gl.glFlush();

@@ -1,6 +1,11 @@
 package com.cg.view;
 
+import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -20,8 +25,11 @@ public class EarthLevel {
 		// TODO Auto-generated constructor stub
 		fPS = fps;
 		frame = new JFrame(eARTH_TITLE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		canvas = new DrawEarthLevel();
 		// Create the OpenGL rendering canvas
+		// canvas.addMouseListener( );
+		// canvas.addMouseMotionListener( );
 		canvas.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
 		frame.getContentPane().add(canvas);
 		frame.pack();
@@ -51,4 +59,5 @@ public class EarthLevel {
 		frame.setVisible(true);
 		animator.start();
 	}
+
 }

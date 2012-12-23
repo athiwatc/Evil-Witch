@@ -18,20 +18,24 @@ public class GameMenu {
 	private JFrame frame;
 	private GLCanvas canvas;
 	private int fPS;
-	private String level;
+	private String level = "None";
 	private int prevMouseX;
 	private int prevMouseY;
-	private boolean mouseRButtonDown;
-	private boolean mouseLButtonDown;
-
+	private boolean isClicked = false;
+	private static String EARTH_TITLE = "Save The Earth";
+	private static final int CANVAS_WIDTH = 800; // width of the drawable
+	private static final int CANVAS_HEIGHT = 600; // height of the drawable
+	private static final int FPS = 60;
+	
 	public GameMenu(String title, int width, int height, int FPS) {
 		fPS = FPS;
 		frame = new JFrame(title);
 		canvas = new DrawMenu();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Create the OpenGL rendering canvas
 		canvas.setPreferredSize(new Dimension(width, height));
-		canvas.addMouseListener( new SelectMenuListener() );
-		canvas.addMouseMotionListener( new MotionListener());
+		canvas.addMouseListener(new SelectMenuListener());
+		canvas.addMouseMotionListener(new MotionListener());
 		frame.getContentPane().add(canvas);
 		frame.pack();
 	}
@@ -65,13 +69,30 @@ public class GameMenu {
 	public String getLevel() {
 		return level;
 	}
-
+	
+	public boolean isClicked() {
+		return isClicked;
+	}
+	public boolean isBetween(int a, int b, int c) {
+	    return b > a ? c > a && c < b : c > b && c < a;
+	}
 	class SelectMenuListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-
+			if (isBetween(148, 306, e.getX()) && isBetween(99, 255, e.getY())) {
+				isClicked = true;
+				level = "Earth";
+				frame.dispose();
+				EarthLevel earthLevel = new EarthLevel(EARTH_TITLE, CANVAS_WIDTH,CANVAS_HEIGHT, FPS);
+				earthLevel.run();
+				
+			} else if (isBetween(488, 628, e.getX()) && isBetween(282, 426, e.getY())) {
+				isClicked = true;
+				level = "Coming Soon";
+				JOptionPane.showMessageDialog(frame, "It is coming soon");
+			}
 		}
 
 		@Override
@@ -89,19 +110,7 @@ public class GameMenu {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			prevMouseX = e.getX();
-			prevMouseY = e.getY();
-			if ((prevMouseX <= 306 || prevMouseX >= 148)
-					&& (prevMouseY <= 255 || prevMouseY >= 99)) {
-				mouseLButtonDown = true;
-				level = "Earth";
-				frame.dispose();
-			} else if ((prevMouseX <= 628 || prevMouseX >= 488)
-					&& (prevMouseY <= 426 || prevMouseY >= 282)) {
-				mouseLButtonDown = true;
-				level = "Coming Soon";
-				frame.dispose();
-			}
+
 		}
 
 		@Override
@@ -122,9 +131,7 @@ public class GameMenu {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			// TODO Auto-generated method stub
-			int x = e.getX();
-			int y = e.getY();
-			System.out.println("x : " + x + " y : " + y + "\n");
+//			System.out.println(e.getX() + " " + e.getY() + "\n");
 		}
 	}
 }

@@ -7,18 +7,18 @@ import java.awt.event.WindowEvent;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.JFrame;
 
-import com.cg.model.DrawWorld;
+import com.cg.model.DrawMenu;
 import com.jogamp.opengl.util.FPSAnimator;
 
-public class GameWorld {
+public class GameMenu {
 	private JFrame frame;
 	private GLCanvas canvas;
 	private int fPS;
 
-	public GameWorld(String title, int width, int height, int FPS) {
+	public GameMenu(String title, int width, int height, int FPS) {
 		fPS = FPS;
 		frame = new JFrame(title);
-		canvas = new DrawWorld();
+		canvas = new DrawMenu();
 		// Create the OpenGL rendering canvas
 		canvas.setPreferredSize(new Dimension(width, height));
 		frame.getContentPane().add(canvas);

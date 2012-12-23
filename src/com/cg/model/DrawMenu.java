@@ -30,7 +30,7 @@ import static javax.media.opengl.GL2.*; // GL2 constants
  * JOGL 2.0 Example 2: Rotating 3D Shapes (GLCanvas)
  */
 @SuppressWarnings("serial")
-public class DrawWorld extends GLCanvas implements GLEventListener {
+public class DrawMenu extends GLCanvas implements GLEventListener,MouseListener {
 
 	// Setup OpenGL Graphics Renderer
 
@@ -43,14 +43,10 @@ public class DrawWorld extends GLCanvas implements GLEventListener {
 	private InputStream stream;
 	private TextureData data;
 	private float angleSphere;
-	private TextRenderer textRenderer;
-	private String earth = "Earth";
-	private String mar = "Mar";
-	private String comingSoon = "Coming Soon";
 	// private String textureFileName = "pic/Color Map.jpg";
 
 	/** Constructor to setup the GUI for this Component */
-	public DrawWorld() {
+	public DrawMenu() {
 		this.addGLEventListener(this);
 	}
 
@@ -79,8 +75,6 @@ public class DrawWorld extends GLCanvas implements GLEventListener {
 		float position[] = { 0.0f, 3.0f, 2.0f, 0.0f };
 		float lmodel_ambient[] = { 0.4f, 0.4f, 0.4f, 1.0f };
 		float local_view[] = { 0.0f };
-
-		textRenderer = new TextRenderer(new Font("SansSerif", Font.BOLD, 1));
 		
 		gl.glLightfv(GL_LIGHT0, GL_AMBIENT, ambient, 0);
 		gl.glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse, 0);
@@ -139,7 +133,7 @@ public class DrawWorld extends GLCanvas implements GLEventListener {
 		float mat_emission[] = { 0.3f, 0.2f, 0.2f, 0.0f };
 
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-		textRenderer.begin3DRendering();
+//		textRenderer.begin3DRendering();
 		/*
 		 * draw sphere in first row, first column diffuse reflection only; no
 		 * ambient or specular
@@ -183,10 +177,6 @@ public class DrawWorld extends GLCanvas implements GLEventListener {
 	    glut.glutSolidSphere(1.0f, 20, 20);
 	    gl.glPopMatrix();
 		angleSphere += rotateOb;
-		textRenderer.draw3D(earth, 2.5f,3.0f, 0.0f, 0.1f);
-		textRenderer.draw3D(mar, 2.5f,5.0f, 0.0f, 0.1f);
-		textRenderer.draw3D(comingSoon, 0.0f,0.0f, 5.0f, 0.1f);
-		textRenderer.end3DRendering();
 	    gl.glFlush();
 	}
 
@@ -196,5 +186,35 @@ public class DrawWorld extends GLCanvas implements GLEventListener {
 	 */
 	@Override
 	public void dispose(GLAutoDrawable drawable) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

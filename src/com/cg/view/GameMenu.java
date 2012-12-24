@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.JFrame;
@@ -26,7 +27,7 @@ public class GameMenu {
 	private static final int CANVAS_WIDTH = 800; // width of the drawable
 	private static final int CANVAS_HEIGHT = 600; // height of the drawable
 	private static final int FPS = 60;
-	
+
 	public GameMenu(String title, int width, int height, int FPS) {
 		fPS = FPS;
 		frame = new JFrame(title);
@@ -69,13 +70,15 @@ public class GameMenu {
 	public String getLevel() {
 		return level;
 	}
-	
+
 	public boolean isClicked() {
 		return isClicked;
 	}
+
 	public boolean isBetween(int a, int b, int c) {
-	    return b > a ? c > a && c < b : c > b && c < a;
+		return b > a ? c > a && c < b : c > b && c < a;
 	}
+
 	class SelectMenuListener implements MouseListener {
 
 		@Override
@@ -85,10 +88,22 @@ public class GameMenu {
 				isClicked = true;
 				level = "Earth";
 				frame.dispose();
-				EarthLevel earthLevel = new EarthLevel(EARTH_TITLE, CANVAS_WIDTH,CANVAS_HEIGHT, FPS);
-				earthLevel.run();
-				
-			} else if (isBetween(488, 628, e.getX()) && isBetween(282, 426, e.getY())) {
+				// EarthLevel earthLevel = new EarthLevel(EARTH_TITLE,
+				// CANVAS_WIDTH,CANVAS_HEIGHT, FPS);
+				// earthLevel.run();
+				int processExitVal = 0;
+				try {
+					Process p = Runtime.getRuntime().exec("C:\\Users\\PAPANG\\Desktop\\2_5\\2_5.exe");
+					processExitVal = p.waitFor();
+				} catch (IOException e1) {
+					System.out.println("IOException");
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else if (isBetween(488, 628, e.getX())
+					&& isBetween(282, 426, e.getY())) {
 				isClicked = true;
 				level = "Coming Soon";
 				JOptionPane.showMessageDialog(frame, "It is coming soon");
@@ -131,7 +146,7 @@ public class GameMenu {
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			// TODO Auto-generated method stub
-//			System.out.println(e.getX() + " " + e.getY() + "\n");
+			// System.out.println(e.getX() + " " + e.getY() + "\n");
 		}
 	}
 }

@@ -45,7 +45,7 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 
 	private float angleSphere;
 	private String earthTextureFileName = "/pic/Color Map.jpg";
-	private String comingSoonTexture = "/pic/Clouds.png";
+	private String comingSoonTexture = "/pic/mars_surface_vik1_big.jpg";
 
 	// private String textureFileName = "pic/Color Map.jpg";
 
@@ -90,7 +90,7 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 		gl.glEnable(GL_LIGHT0);
 		try {
 			textures[0] = TextureIO.newTexture(this.getClass().getResourceAsStream(earthTextureFileName), true, "jpg");
-			textures[1] = TextureIO.newTexture(this.getClass().getResourceAsStream(comingSoonTexture), true, "png");
+			textures[1] = TextureIO.newTexture(this.getClass().getResourceAsStream(comingSoonTexture), true, "jpg");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

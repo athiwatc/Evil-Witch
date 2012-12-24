@@ -13,13 +13,16 @@ import static javax.media.opengl.fixedfunc.GLLightingFunc.GL_SMOOTH;
 import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_MODELVIEW;
 import static javax.media.opengl.fixedfunc.GLMatrixFunc.GL_PROJECTION;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.glu.GLU;
 
-public class DrawEarthLevel extends GLCanvas implements GLEventListener {
+public class DrawEarthLevel extends GLCanvas implements GLEventListener,KeyListener {
 
 	private GLU glu; // for the GL Utility
 	/**
@@ -34,6 +37,7 @@ public class DrawEarthLevel extends GLCanvas implements GLEventListener {
 	public DrawEarthLevel() {
 		// TODO Auto-generated constructor stub
 		this.addGLEventListener(this);
+		this.addKeyListener(this);
 	}
 
 	/**
@@ -187,4 +191,23 @@ public class DrawEarthLevel extends GLCanvas implements GLEventListener {
 	    */
 	   @Override
 	   public void dispose(GLAutoDrawable drawable) { }
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

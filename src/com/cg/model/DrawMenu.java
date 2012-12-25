@@ -46,6 +46,8 @@ public class DrawMenu extends GLCanvas implements GLEventListener {
 	private float angleSphere;
 	private String earthTextureFileName = "/pic/Color Map.jpg";
 	private String comingSoonTexture = "/pic/mars_surface_vik1_big.jpg";
+	private String earth = "Earth";
+	private String mars = "Mars";
 
 	// private String textureFileName = "pic/Color Map.jpg";
 

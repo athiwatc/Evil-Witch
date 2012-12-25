@@ -88,25 +88,18 @@ public class GameMenu {
 				isClicked = true;
 				level = "Earth";
 				frame.dispose();
-				// EarthLevel earthLevel = new EarthLevel(EARTH_TITLE,
-				// CANVAS_WIDTH,CANVAS_HEIGHT, FPS);
-				// earthLevel.run();
-				int processExitVal = 0;
-				try {
-					Process p = Runtime.getRuntime().exec("C:\\Users\\PAPANG\\Desktop\\2_5\\2_5.exe");
-					processExitVal = p.waitFor();
-				} catch (IOException e1) {
-					System.out.println("IOException");
-					e1.printStackTrace();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				EarthLevel earthLevel = new EarthLevel(EARTH_TITLE,
+						CANVAS_WIDTH, CANVAS_HEIGHT, FPS);
+				earthLevel.run();
 			} else if (isBetween(488, 628, e.getX())
 					&& isBetween(282, 426, e.getY())) {
 				isClicked = true;
 				level = "Coming Soon";
 				JOptionPane.showMessageDialog(frame, "It is coming soon");
+			} else {
+				isClicked = false;
+				level = "None";
+				JOptionPane.showMessageDialog(frame, "Select on Planet");
 			}
 		}
 
